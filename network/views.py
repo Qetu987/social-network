@@ -32,6 +32,10 @@ from rest_framework.status import *
 from rest_framework.authtoken.models import Token
 
 
+"""
+    View for list of user 
+    Get query
+"""
 class SimpleListViev(APIView):
     def get(self, request):
         user = SimpleUser.objects.all()
@@ -40,9 +44,10 @@ class SimpleListViev(APIView):
         return Response(serializer.data)
 
 
-"""class for get and post request to news"""
-
-
+"""
+    View for post 
+    Get query and post query
+"""
 class PostListView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -58,6 +63,9 @@ class PostListView(APIView):
         return Response(request.data, status=201)
 
 
+"""
+    View post query for post
+"""
 class PostLikeView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -68,6 +76,9 @@ class PostLikeView(APIView):
         return Response(request.data, status=201)
 
 
+"""
+    View post query for like
+"""
 class PostDislikeView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -78,6 +89,9 @@ class PostDislikeView(APIView):
         return Response(request.data, status=201)
 
 
+"""
+    View create query for new user
+"""
 class UserCreateView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
 
@@ -90,6 +104,9 @@ class UserCreateView(generics.CreateAPIView):
             Token.objects.create(user=instance)
 
 
+"""
+    View get query for analitic of likes by period
+"""
 class AnaliticsLikesView(generics.ListAPIView):
     serializer_class = LikeSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -107,6 +124,9 @@ class AnaliticsLikesView(generics.ListAPIView):
             return self.list(request, *args, [{}])
 
 
+"""
+    View get query for analitic of dislikes by period
+"""
 class AnaliticsDislikesView(generics.ListAPIView):
     serializer_class = DislikeSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -124,6 +144,9 @@ class AnaliticsDislikesView(generics.ListAPIView):
             return self.list(request, *args, [{}])
 
 
+"""
+    View login query for user
+"""
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((permissions.AllowAny,))

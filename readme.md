@@ -3,7 +3,7 @@
 
 ## Installing
 
-:shipit: [read](./install) for install project
+:shipit: [read](./install.md) for install project
 
 <br>
 
